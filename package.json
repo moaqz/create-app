@@ -1,0 +1,41 @@
+{
+  "name": "create-moaqz-app",
+  "type": "module",
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.5.0",
+  "description": "Scaffolding tool for my personal projects",
+  "author": "moaqz",
+  "homepage": "https://github.com/moaqz/create-app#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moaqz/create-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moaqz/create-app/issues"
+  },
+  "main": "src/index.js",
+  "bin": {
+    "create-moaqz-app": "src/index.js"
+  },
+  "files": [
+    "src/eslint",
+    "src/index.js",
+    "src/index.mjs",
+    "src/template-*"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "build": "unbuild"
+  },
+  "dependencies": {
+    "consola": "^3.2.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.23.1",
+    "@types/node": "^20.14.11",
+    "eslint": "9.5.0",
+    "typescript": "^5.5.3",
+    "unbuild": "^2.0.0"
+  }
+}
