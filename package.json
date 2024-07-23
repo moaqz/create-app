@@ -35,6 +35,7 @@
     "@antfu/eslint-config": "^2.23.1",
     "@types/node": "^20.14.11",
     "eslint": "9.5.0",
+    "lefthook": "^1.7.5",
     "typescript": "^5.5.3",
     "unbuild": "^2.0.0"
   }

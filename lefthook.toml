@@ -1,0 +1,6 @@
+[pre-commit]
+parallel = true
+
+[pre-commit.commands.lint]
+glob = "*.{js,ts,jsx,tsx,vue,json}"
+run = "pnpm eslint {staged_files}"
