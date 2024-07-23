@@ -1,11 +1,7 @@
 <script lang="ts" setup>
-interface Props {}
-
-defineProps<Props>();
+import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <h1>Vue Template</h1>
+  <RouterView />
 </template>
-
-<style scoped></style>
