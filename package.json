@@ -1,7 +1,7 @@
 {
   "name": "create-moaqz-app",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "packageManager": "pnpm@9.5.0",
   "description": "Scaffolding tool for my personal projects",
   "author": "moaqz",
