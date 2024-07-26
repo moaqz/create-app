@@ -6,6 +6,10 @@ import consola from "consola";
 import { copy, emptyDir, getPackage } from "./utils";
 import { getUserInputs } from "./prompt";
 
+const RENAME_FILES: Record<string, string> = {
+  _gitignore: ".gitignore",
+};
+
 async function createApp() {
   const {
     framework,
@@ -35,7 +39,7 @@ async function createApp() {
     }
 
     const srcFile = path.resolve(templateDir, file);
-    const destFile = path.resolve(rootDir, file);
+    const destFile = path.resolve(rootDir, RENAME_FILES[file] ?? file);
     copy(srcFile, destFile);
   }
 
