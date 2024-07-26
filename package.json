@@ -2,7 +2,7 @@
   "name": "create-moaqz-app",
   "type": "module",
   "version": "0.2.0",
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.6.0",
   "description": "Scaffolding tool for my personal projects",
   "author": "moaqz",
   "homepage": "https://github.com/moaqz/create-app#readme",
@@ -32,11 +32,11 @@
     "consola": "^3.2.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.23.1",
-    "@types/node": "^20.14.11",
+    "@antfu/eslint-config": "^2.23.2",
+    "@types/node": "^20.14.12",
     "eslint": "9.5.0",
-    "lefthook": "^1.7.5",
-    "typescript": "^5.5.3",
+    "lefthook": "^1.7.9",
+    "typescript": "^5.5.4",
     "unbuild": "^2.0.0"
   }
 }
