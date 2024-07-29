@@ -32,10 +32,10 @@
     "consola": "^3.2.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.23.2",
-    "@types/node": "^20.14.12",
+    "@antfu/eslint-config": "^2.24.0",
+    "@types/node": "^20.14.13",
     "eslint": "9.5.0",
-    "lefthook": "^1.7.9",
+    "lefthook": "^1.7.11",
     "typescript": "^5.5.4",
     "unbuild": "^2.0.0"
   }
