@@ -7,6 +7,10 @@ const FRAMEWORKS = [
     label: "Vue",
     value: "vue",
   },
+  {
+    label: "React",
+    value: "react",
+  },
 ];
 
 /**
