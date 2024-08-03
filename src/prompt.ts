@@ -26,7 +26,7 @@ const prompt: typeof consola.prompt = async (message, options) => {
 };
 
 export async function getUserInputs() {
-  const projectName = await prompt("Project name", {
+  const projectName = await prompt(" Project name", {
     placeholder: "Project name",
     required: true,
     type: "text",
@@ -37,19 +37,19 @@ export async function getUserInputs() {
   let overwrite = false;
   if (!isDirEmpty(targetDir)) {
     const message = projectName === "."
-      ? "Current directory is not empty. Please choose how to proceed:"
-      : `Target directory ${projectName} is not empty. Please choose how to proceed:`;
+      ? " Current directory is not empty. Please choose how to proceed:"
+      : ` Target directory ${projectName} is not empty. Please choose how to proceed:`;
 
     const option = await prompt(message, {
       required: true,
       type: "select",
       options: [
         {
-          label: "Remove existing files and continue",
+          label: " Remove existing files and continue",
           value: "yes",
         },
         {
-          label: "Cancel operation",
+          label: " Cancel operation",
           value: "no",
         },
       ],
@@ -64,13 +64,13 @@ export async function getUserInputs() {
     overwrite = true;
   }
 
-  const framework = await prompt("Select a framework", {
+  const framework = await prompt(" Select a framework", {
     required: true,
     type: "select",
     options: FRAMEWORKS,
   });
 
-  const eslint = await prompt("Add ESLint for code quality?", {
+  const eslint = await prompt(" Add ESLint for code quality?", {
     required: true,
     type: "confirm",
     initial: true,

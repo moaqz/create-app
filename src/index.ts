@@ -76,6 +76,12 @@ async function createApp() {
     pkgFile,
     `${JSON.stringify(pkg, null, 2)}\n`,
   );
+
+  consola.success(` Ready! To get started, run the following commands:\n
+    cd ${name}
+    git init
+    pnpm install
+  `);
 }
 
 createApp().catch((err) => {
