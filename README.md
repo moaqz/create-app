@@ -1,6 +1,3 @@
-> [!WARNING]
-> This CLI is still a work in progress and might not have all the features listed below.
-
 ## 🌟 Features
 
 - **Frameworks**: Choose between `Vue` or `React`.
