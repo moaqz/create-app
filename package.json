@@ -1,7 +1,7 @@
 {
   "name": "create-moaqz-app",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "packageManager": "pnpm@9.6.0",
   "description": "Scaffolding tool for my personal projects",
   "author": "moaqz",
@@ -19,6 +19,7 @@
   },
   "files": [
     "src/eslint",
+    "src/git-hooks",
     "src/index.js",
     "src/index.mjs",
     "src/template-*"
