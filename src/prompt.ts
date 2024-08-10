@@ -76,10 +76,17 @@ export async function getUserInputs() {
     initial: true,
   });
 
+  const gitHooks = await prompt(" Add Lefthook for pre-commit Git hooks?", {
+    required: true,
+    type: "confirm",
+    initial: true,
+  });
+
   return {
     name: projectName,
     overwrite,
     framework,
     eslint,
+    gitHooks,
   };
 }

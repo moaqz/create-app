@@ -16,6 +16,7 @@ async function createApp() {
     name,
     overwrite,
     eslint,
+    gitHooks,
   } = await getUserInputs();
 
   if (overwrite) {
@@ -26,6 +27,7 @@ async function createApp() {
   const rootDir = path.resolve(process.cwd(), name);
   const srcDir = path.dirname(fileURLToPath(import.meta.url));
   const eslintDir = path.resolve(srcDir, "eslint");
+  const gitHooksDir = path.resolve(srcDir, "git-hooks");
   const templateDir = path.resolve(srcDir, `template-${template}`);
 
   if (!fs.existsSync(rootDir)) {
@@ -71,6 +73,26 @@ async function createApp() {
     }
   }
 
+  if (gitHooks) {
+    const hooksPkg = getPackage(gitHooksDir);
+
+    pkg.devDependencies = {
+      ...pkg.devDependencies,
+      ...hooksPkg.devDependencies,
+    };
+
+    const files = fs.readdirSync(gitHooksDir);
+    for (const file of files) {
+      if (file === "package.json") {
+        continue;
+      }
+
+      const srcFile = path.resolve(gitHooksDir, file);
+      const destFile = path.resolve(rootDir, file);
+      copy(srcFile, destFile);
+    }
+  }
+
   const pkgFile = path.resolve(rootDir, "package.json");
   fs.writeFileSync(
     pkgFile,
@@ -81,6 +103,7 @@ async function createApp() {
     cd ${name}
     git init
     pnpm install
+    ${gitHooks ? "pnpm lefthook install" : ""}
   `);
 }
 
