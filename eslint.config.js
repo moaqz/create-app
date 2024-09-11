@@ -7,6 +7,7 @@ export default antfu({
   },
 
   rules: {
-    curly: "off",
+    "curly": "off",
+    "style/operator-linebreak": "off",
   },
 });

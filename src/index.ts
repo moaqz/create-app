@@ -1,23 +1,18 @@
 import fs from "node:fs";
-import process from "node:process";
 import path from "node:path";
+import process from "node:process";
 import { fileURLToPath } from "node:url";
 import consola from "consola";
-import { copy, emptyDir, getPackage } from "./utils";
 import { getUserInputs } from "./prompt";
+import { copy, emptyDir, getPackage } from "./utils";
 
 const RENAME_FILES: Record<string, string> = {
   _gitignore: ".gitignore",
 };
 
 async function createApp() {
-  const {
-    framework,
-    name,
-    overwrite,
-    eslint,
-    gitHooks,
-  } = await getUserInputs();
+  const { framework, name, overwrite, linter, gitHooks }
+    = await getUserInputs();
 
   if (overwrite) {
     emptyDir(name);
@@ -27,8 +22,12 @@ async function createApp() {
   const rootDir = path.resolve(process.cwd(), name);
   const srcDir = path.dirname(fileURLToPath(import.meta.url));
   const eslintDir = path.resolve(srcDir, "eslint");
+  const biomeDir = path.resolve(srcDir, "biome");
   const gitHooksDir = path.resolve(srcDir, "git-hooks");
   const templateDir = path.resolve(srcDir, `template-${template}`);
+  // eslint-disable-next-line ts/ban-ts-comment
+  // @ts-ignore
+  const linterDir = linter === "biome" ? biomeDir : eslintDir;
 
   if (!fs.existsSync(rootDir)) {
     fs.mkdirSync(rootDir, { recursive: true });
@@ -48,26 +47,26 @@ async function createApp() {
   const pkg = getPackage(templateDir);
   pkg.name = name;
 
-  if (eslint) {
-    const eslintPkg = getPackage(eslintDir);
+  if (linter) {
+    const linterPkg = getPackage(linterDir);
 
     pkg.devDependencies = {
-      ...eslintPkg.devDependencies,
+      ...linterPkg.devDependencies,
       ...pkg.devDependencies,
     };
 
     pkg.scripts = {
-      ...eslintPkg.scripts,
+      ...linterPkg.scripts,
       ...pkg.scripts,
     };
 
-    const files = fs.readdirSync(eslintDir);
+    const files = fs.readdirSync(linterDir);
     for (const file of files) {
       if (file === "package.json") {
         continue;
       }
 
-      const srcFile = path.resolve(eslintDir, file);
+      const srcFile = path.resolve(linterDir, file);
       const destFile = path.resolve(rootDir, file);
       copy(srcFile, destFile);
     }
@@ -94,10 +93,7 @@ async function createApp() {
   }
 
   const pkgFile = path.resolve(rootDir, "package.json");
-  fs.writeFileSync(
-    pkgFile,
-    `${JSON.stringify(pkg, null, 2)}\n`,
-  );
+  fs.writeFileSync(pkgFile, `${JSON.stringify(pkg, null, 2)}\n`);
 
   consola.success(` Ready! To get started, run the following commands:\n
     cd ${name}

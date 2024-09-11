@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "format": "biome format --write",
+    "lint": "biome lint",
+    "lint:fix": "biome lint --write"
+  },
+  "devDependencies": {
+    "biome": "^0.3.3"
+  }
+}

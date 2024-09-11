@@ -36,9 +36,10 @@ export async function getUserInputs() {
 
   let overwrite = false;
   if (!isDirEmpty(targetDir)) {
-    const message = projectName === "."
-      ? " Current directory is not empty. Please choose how to proceed:"
-      : ` Target directory ${projectName} is not empty. Please choose how to proceed:`;
+    const message
+      = projectName === "."
+        ? " Current directory is not empty. Please choose how to proceed:"
+        : ` Target directory ${projectName} is not empty. Please choose how to proceed:`;
 
     const option = await prompt(message, {
       required: true,
@@ -70,10 +71,18 @@ export async function getUserInputs() {
     options: FRAMEWORKS,
   });
 
-  const eslint = await prompt(" Add ESLint for code quality?", {
-    required: true,
-    type: "confirm",
-    initial: true,
+  const linter = await prompt(" Select a linter", {
+    type: "select",
+    options: [
+      {
+        label: "Biome",
+        value: "biome",
+      },
+      {
+        label: "ESLint",
+        value: "eslint",
+      },
+    ],
   });
 
   const gitHooks = await prompt(" Add Lefthook for pre-commit Git hooks?", {
@@ -86,7 +95,7 @@ export async function getUserInputs() {
     name: projectName,
     overwrite,
     framework,
-    eslint,
+    linter,
     gitHooks,
   };
 }
